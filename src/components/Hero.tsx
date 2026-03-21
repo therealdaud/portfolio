@@ -244,7 +244,7 @@ export default function Hero() {
         }} />
       </div>
 
-      <div className="container" style={{ paddingTop: 100, paddingBottom: 60 }}>
+      <div className="container" style={{ paddingTop: 120, paddingBottom: 60 }}>
         <div className="hero-grid">
 
           {/* ── Left: Text ── */}

@@ -22,66 +22,78 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        width: '100%',
-        zIndex: 100,
-        transition: 'all 0.3s ease',
-        background: scrolled
-          ? 'rgba(8,8,15,0.92)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(100,210,255,0.08)' : 'none',
-      }}
-    >
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
-        {/* Logo + Currently Building */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+    <>
+      {/* ── Announcement Bar ── */}
+      <div className="announce-bar" style={{
+        position: 'fixed', top: 0, width: '100%', zIndex: 101,
+        background: 'linear-gradient(90deg, rgba(6,214,160,0.08), rgba(0,212,255,0.06), rgba(124,58,237,0.08))',
+        borderBottom: '1px solid rgba(6,214,160,0.12)',
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        height: 32,
+      }}>
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', gap: 8,
+          fontSize: 11, color: 'var(--accent3)',
+          fontFamily: 'var(--mono)', letterSpacing: 0.5,
+        }}>
+          <span style={{
+            width: 6, height: 6, borderRadius: '50%',
+            background: 'var(--accent3)',
+            boxShadow: '0 0 8px var(--accent3)',
+            animation: 'pulse-dot 2s ease-in-out infinite',
+          }} />
+          Currently building: <strong style={{ color: 'var(--heading)' }}>HeatShield</strong>
+          <span style={{ color: 'var(--muted)' }}>— Personalized Heat-Risk Alert System on AWS</span>
+        </span>
+      </div>
+
+      {/* ── Main Navbar ── */}
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{
+          position: 'fixed',
+          top: 32,
+          width: '100%',
+          zIndex: 100,
+          transition: 'all 0.3s ease',
+          background: scrolled
+            ? 'rgba(8,8,15,0.92)'
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(100,210,255,0.08)' : 'none',
+        }}
+      >
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          height: 64, padding: '0 40px', maxWidth: 1400, margin: '0 auto',
+        }}>
+          {/* Logo */}
           <a href="#hero" style={{ fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 18, color: 'var(--accent)', letterSpacing: 1 }}>
             &lt;Daud /&gt;
           </a>
-          <span className="building-badge" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            padding: '4px 12px', borderRadius: 20,
-            background: 'rgba(6,214,160,0.08)',
-            border: '1px solid rgba(6,214,160,0.2)',
-            fontSize: 11, color: 'var(--accent3)',
-            fontFamily: 'var(--mono)', whiteSpace: 'nowrap',
-          }}>
-            <span style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: 'var(--accent3)',
-              boxShadow: '0 0 8px var(--accent3)',
-              animation: 'pulse-dot 2s ease-in-out infinite',
-            }} />
-            Building: HeatShield
-          </span>
-        </div>
 
-        {/* Desktop links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 36 }} className="desktop-nav">
-          {links.map((l, i) => (
-            <motion.a
-              key={l.href}
-              href={l.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * i + 0.3 }}
-              style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--muted)', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
-            >
-              <span style={{ color: 'var(--accent)' }}>0{i + 1}.</span> {l.label}
-            </motion.a>
-          ))}
+          {/* Desktop links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="desktop-nav">
+            {links.map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * i + 0.3 }}
+                style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--muted)', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
+              >
+                <span style={{ color: 'var(--accent)' }}>0{i + 1}.</span> {l.label}
+              </motion.a>
+            ))}
+          </div>
 
-          {/* Ctrl+K + Socials */}
-          <div style={{ display: 'flex', gap: 14, marginLeft: 8, alignItems: 'center' }}>
+          {/* Right: Ctrl+K + Socials */}
+          <div style={{ display: 'flex', gap: 14, alignItems: 'center' }} className="desktop-nav">
             <button
               onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
               style={{
@@ -121,47 +133,47 @@ export default function Navbar() {
               </a>
             ))}
           </div>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', display: 'none' }}
+            className="hamburger"
+          >
+            {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
 
-        {/* Hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', display: 'none' }}
-          className="hamburger"
-        >
-          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            style={{
-              background: 'rgba(13,13,22,0.98)',
-              borderTop: '1px solid var(--border)',
-              padding: '20px 32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 20,
-            }}
-          >
-            {links.map(l => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
-                style={{ fontFamily: 'var(--mono)', fontSize: 15, color: 'var(--text)' }}
-              >
-                {l.label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              style={{
+                background: 'rgba(13,13,22,0.98)',
+                borderTop: '1px solid var(--border)',
+                padding: '20px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 20,
+              }}
+            >
+              {links.map(l => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{ fontFamily: 'var(--mono)', fontSize: 15, color: 'var(--text)' }}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       <style>{`
         @keyframes pulse-dot {
@@ -171,9 +183,10 @@ export default function Navbar() {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger { display: flex !important; }
-          .building-badge { display: none !important; }
+          .announce-bar { display: none !important; }
+          nav { top: 0 !important; }
         }
       `}</style>
-    </motion.nav>
+    </>
   );
 }
