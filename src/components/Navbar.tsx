@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMenu, FiX } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 
 const links = [
   { label: 'About',      href: '#about' },
   { label: 'Skills',     href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects',   href: '#projects' },
+  { label: 'Blog',       href: '#blog' },
   { label: 'Contact',    href: '#contact' },
 ];
 
@@ -39,10 +40,28 @@ export default function Navbar() {
       }}
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
-        {/* Logo */}
-        <a href="#hero" style={{ fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 18, color: 'var(--accent)', letterSpacing: 1 }}>
-          &lt;Daud /&gt;
-        </a>
+        {/* Logo + Currently Building */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <a href="#hero" style={{ fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 18, color: 'var(--accent)', letterSpacing: 1 }}>
+            &lt;Daud /&gt;
+          </a>
+          <span className="building-badge" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            padding: '4px 12px', borderRadius: 20,
+            background: 'rgba(6,214,160,0.08)',
+            border: '1px solid rgba(6,214,160,0.2)',
+            fontSize: 11, color: 'var(--accent3)',
+            fontFamily: 'var(--mono)', whiteSpace: 'nowrap',
+          }}>
+            <span style={{
+              width: 6, height: 6, borderRadius: '50%',
+              background: 'var(--accent3)',
+              boxShadow: '0 0 8px var(--accent3)',
+              animation: 'pulse-dot 2s ease-in-out infinite',
+            }} />
+            Building: HeatShield
+          </span>
+        </div>
 
         {/* Desktop links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 36 }} className="desktop-nav">
@@ -61,8 +80,30 @@ export default function Navbar() {
             </motion.a>
           ))}
 
-          {/* Socials */}
-          <div style={{ display: 'flex', gap: 14, marginLeft: 8 }}>
+          {/* Ctrl+K + Socials */}
+          <div style={{ display: 'flex', gap: 14, marginLeft: 8, alignItems: 'center' }}>
+            <button
+              onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                padding: '5px 12px', borderRadius: 8,
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                color: 'var(--muted)', cursor: 'pointer',
+                fontFamily: 'var(--mono)', fontSize: 11,
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(0,212,255,0.3)'; el.style.color = 'var(--accent)'; }}
+              onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = 'rgba(255,255,255,0.1)'; el.style.color = 'var(--muted)'; }}
+            >
+              <FiSearch size={12} />
+              <kbd style={{
+                padding: '1px 5px', borderRadius: 4,
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                fontSize: 10,
+              }}>Ctrl K</kbd>
+            </button>
             {[
               { icon: <FiGithub size={18} />, href: 'https://github.com/therealdaud' },
               { icon: <FiLinkedin size={18} />, href: 'https://linkedin.com/in/daudahmadnisar' },
@@ -123,9 +164,14 @@ export default function Navbar() {
       </AnimatePresence>
 
       <style>{`
+        @keyframes pulse-dot {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
+        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger { display: flex !important; }
+          .building-badge { display: none !important; }
         }
       `}</style>
     </motion.nav>

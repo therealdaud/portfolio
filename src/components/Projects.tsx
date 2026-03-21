@@ -11,6 +11,7 @@ type Project = {
   tech: string[];
   github?: string;
   live?: string;
+  demo?: string; // Path to GIF/MP4 in public/demos/ (e.g. '/demos/heatshield.gif')
   color: string;
   period: string;
 };
@@ -120,6 +121,36 @@ export default function Projects() {
             >
               {/* Top accent bar */}
               <div style={{ height: 3, background: `linear-gradient(90deg, ${p.color}, ${p.color}44)` }} />
+
+              {/* Demo GIF/Video preview */}
+              {p.demo && (
+                <div style={{
+                  position: 'relative', overflow: 'hidden',
+                  borderBottom: '1px solid var(--border)',
+                  background: '#0a0a14',
+                  maxHeight: 280,
+                }}>
+                  {p.demo.endsWith('.mp4') ? (
+                    <video
+                      src={p.demo}
+                      autoPlay muted loop playsInline
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  ) : (
+                    <img
+                      src={p.demo}
+                      alt={`${p.name} demo`}
+                      loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  )}
+                  {/* Gradient fade at bottom */}
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: 0, right: 0, height: 40,
+                    background: 'linear-gradient(transparent, var(--card))',
+                  }} />
+                </div>
+              )}
 
               <div className="project-card-grid">
                 <div>
