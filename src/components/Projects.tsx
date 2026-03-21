@@ -121,7 +121,7 @@ export default function Projects() {
               {/* Top accent bar */}
               <div style={{ height: 3, background: `linear-gradient(90deg, ${p.color}, ${p.color}44)` }} />
 
-              <div style={{ padding: 32, display: 'grid', gridTemplateColumns: '1fr auto', gap: 24, alignItems: 'start' }}>
+              <div className="project-card-grid">
                 <div>
                   {/* Header */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 6, flexWrap: 'wrap' }}>
@@ -164,7 +164,7 @@ export default function Projects() {
                 </div>
 
                 {/* Links */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
+                <div className="project-links">
                   {p.github && (
                     <a
                       href={p.github}

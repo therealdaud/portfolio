@@ -245,7 +245,7 @@ export default function Hero() {
       </div>
 
       <div className="container" style={{ paddingTop: 100, paddingBottom: 60 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 60 }}>
+        <div className="hero-grid">
 
           {/* ── Left: Text ── */}
           <div>

@@ -120,7 +120,67 @@ section { padding: 100px 0; }
   border-color: var(--accent);
 }
 
+/* ── Responsive layout classes ── */
+
+/* Hero two-column grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Project card inner grid */
+.project-card-grid {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Project links column */
+.project-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* Navbar mobile */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Mobile breakpoints ── */
 @media (max-width: 768px) {
   section { padding: 70px 0; }
-  .container { padding: 0 20px; }
+  .container { padding: 0 18px; }
+
+  /* Hero: stack text only, no avatar column */
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Projects: stack content and links */
+  .project-card-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .project-links {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  /* Slightly smaller section titles on tiny screens */
+  .section-title { font-size: clamp(22px, 6vw, 32px); }
 }
