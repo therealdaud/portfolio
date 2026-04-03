@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiArrowLeft, FiGithub, FiPlay, FiPause,
-  FiSkipForward, FiRotateCcw, FiTrash2,
+  FiSkipForward, FiRotateCcw, FiTrash2, FiChevronDown,
 } from 'react-icons/fi';
 import { MdOutlineAccountTree } from 'react-icons/md';
 import { computeDijkstraSteps, type GNode, type GEdge, type DijkstraStep } from '../utils/dijkstraAlgo';
@@ -190,6 +190,7 @@ export default function DijkstraPage() {
   const svgRef     = useRef<SVGSVGElement>(null);
   const weightRef  = useRef<HTMLInputElement>(null);
   const playTimer  = useRef<ReturnType<typeof setInterval> | null>(null);
+  const vizRef     = useRef<HTMLDivElement>(null);
 
   const currentStep = stepIdx >= 0 && steps.length ? steps[stepIdx] : null;
 
@@ -450,7 +451,7 @@ export default function DijkstraPage() {
         <div className="container">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <p style={{ fontFamily: 'var(--mono)', fontSize: 12, color: ACCENT, letterSpacing: 3, textTransform: 'uppercase', marginBottom: 12 }}>
-              04. Projects — Interactive Visualizer
+              04. Projects / Interactive Visualizer
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 16 }}>
               <MdOutlineAccountTree size={36} color={ACCENT} />
@@ -462,21 +463,44 @@ export default function DijkstraPage() {
               </h1>
             </div>
             <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, maxWidth: 680, marginBottom: 20 }}>
-              An interactive step-by-step walkthrough of Dijkstra's shortest-path algorithm on a
-              dynamic weighted graph. Build your own graph, set source and destination nodes, then
-              watch the algorithm find the optimal path in real time.
+              Build a weighted graph, pick your source and destination, then watch Dijkstra
+              find the shortest path one step at a time. Every relaxation, every distance update,
+              rendered live on the canvas as it happens.
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {['C++', 'TypeScript', 'React', 'SVG', 'Graph Theory', 'Data Structures', 'Algorithms'].map(t => (
                 <TechBadge key={t} name={t} color={ACCENT} />
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              onClick={() => vizRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              style={{
+                display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                marginTop: 36, cursor: 'pointer', color: 'var(--muted)', transition: 'color 0.2s',
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.color = ACCENT)}
+              onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.color = 'var(--muted)')}
+            >
+              <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: 3, textTransform: 'uppercase' }}>
+                scroll to visualize
+              </span>
+              <motion.div
+                animate={{ y: [0, 7, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <FiChevronDown size={20} />
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* ── Visualizer ── */}
-      <div className="container" style={{ paddingBottom: 80 }}>
+      <div className="container" ref={vizRef} style={{ paddingBottom: 80 }}>
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
@@ -565,7 +589,7 @@ export default function DijkstraPage() {
               borderBottom: '1px solid rgba(0,212,255,0.06)',
               fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--muted)',
             }}>
-              {mode === 'select'  && (edgeFrom ? `Drawing edge from ${edgeFrom} — click destination node` : 'Drag nodes to reposition')}
+              {mode === 'select'  && (edgeFrom ? `Drawing edge from ${edgeFrom}, now click the destination` : 'Drag nodes to reposition')}
               {mode === 'addNode' && 'Click anywhere on the canvas to place a node'}
               {mode === 'addEdge' && (!edgeFrom ? 'Click a source node' : `From ${edgeFrom} → click a destination node`)}
               {mode === 'delete'  && 'Click a node or edge to delete it'}
@@ -1036,25 +1060,24 @@ export default function DijkstraPage() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48 }} className="details-grid">
               <div>
                 <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.85, marginBottom: 20 }}>
-                  This project started as a C++ data structures assignment implementing Dijkstra's algorithm
-                  on a dynamic weighted graph using an adjacency-list representation. The core engine
-                  is built in C++ with a clean abstract base class (<code style={{ color: ACCENT, fontFamily: 'var(--mono)' }}>GraphBase</code>) and
-                  a concrete implementation featuring full input validation.
+                  This started as a C++ data structures assignment: a dynamic weighted graph built
+                  from scratch using an adjacency list, with a clean abstract base class (<code style={{ color: ACCENT, fontFamily: 'var(--mono)' }}>GraphBase</code>) and
+                  a concrete implementation that enforces strict input validation throughout.
                 </p>
                 <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.85 }}>
-                  The visualizer you're using is built in TypeScript and React with raw SVG — no
-                  graph-rendering library, no canvas abstraction. Every glow, animation, and step
-                  transition is hand-coded to match the portfolio's aesthetic.
+                  The visualizer is built in TypeScript and React using raw SVG with no
+                  graph rendering library and no canvas abstraction. Every glow, animation, and
+                  transition is hand-coded to fit the portfolio's aesthetic.
                 </p>
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {[
-                  'Adjacency-list graph (O(V + E) space) with dynamic vertex and edge management',
-                  'Dijkstra\'s algorithm runs in O(V² + E) using a linear scan — identical to the C++ implementation',
-                  'Abstract GraphBase interface with a concrete Graph class, mirroring classic OOP design',
-                  'Full input validation: no self-loops, no duplicate vertices or edges, existence checks on all operations',
-                  'Interactive SVG canvas: drag nodes, add/delete nodes and edges, set custom edge weights',
-                  'Step-by-step mode with play/pause, variable speed, keyboard shortcuts, and a live distance table',
+                  'Adjacency list graph using O(V + E) space with full dynamic vertex and edge management at runtime',
+                  'Dijkstra runs O(V² + E) via linear scan, matching the C++ implementation exactly so every step in the visualizer reflects what the code does',
+                  'Abstract GraphBase interface with a concrete Graph class following classic OOP separation of interface and implementation',
+                  'Input validation covers self-loops, duplicate vertices, duplicate edges, and existence checks on every operation',
+                  'Interactive SVG canvas where you can drag nodes, add or delete edges, and assign any weight before running',
+                  'Playback controls include play, pause, step forward, step back, variable speed, and keyboard shortcuts with a live distance table updating each step',
                 ].map((b, i) => (
                   <li key={i} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--muted)', lineHeight: 1.65 }}>
                     <span style={{ color: ACCENT, flexShrink: 0, marginTop: 3 }}>▹</span>
