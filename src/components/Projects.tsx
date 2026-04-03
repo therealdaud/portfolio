@@ -1,6 +1,8 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { MdOutlineAccountTree } from 'react-icons/md';
 
 type Project = {
   name: string;
@@ -11,7 +13,8 @@ type Project = {
   tech: string[];
   github?: string;
   live?: string;
-  demo?: string; // Path to GIF/MP4 in public/demos/ (e.g. '/demos/heatshield.gif')
+  link?: string;  // internal route (e.g. '/projects/dijkstra')
+  demo?: string;  // Path to GIF/MP4 in public/demos/
   color: string;
   period: string;
 };
@@ -65,6 +68,23 @@ const projects: Project[] = [
     tech: ['React 18', 'JavaScript', 'Air Scraper API', 'RapidAPI', 'Axios', 'CSS'],
     color: '#7c3aed',
     github: 'https://github.com/therealdaud/WanderWise',
+  },
+  {
+    name: 'Dijkstra Graph Visualizer',
+    emoji: '🔷',
+    tagline: 'Interactive Shortest-Path Algorithm Visualization',
+    period: 'Spring 2024',
+    description: 'A dynamic weighted-graph engine written in C++ with an interactive step-by-step Dijkstra visualizer built in React and raw SVG. Build your own graph, drag nodes around the canvas, set custom edge weights, then watch the algorithm find the optimal path — one step at a time.',
+    bullets: [
+      'C++ core implements an adjacency-list graph with full input validation (no self-loops, no duplicate vertices/edges, existence checks on all operations) and a clean GraphBase abstract interface.',
+      'Dijkstra\'s algorithm runs identically to the C++ implementation — linear-scan O(V² + E) — with every relaxation step captured and replayed in the visualizer.',
+      'Interactive SVG canvas with drag-to-reposition nodes, click-to-add edges with custom weights, and delete mode. Preset graphs included for immediate exploration.',
+      'Step-by-step playback with play/pause, variable speed, keyboard shortcuts (Space, →, R), and a live distance table showing d(v) and predecessor for every node.',
+    ],
+    tech: ['C++', 'TypeScript', 'React', 'SVG', 'Graph Theory', 'Data Structures', 'Framer Motion'],
+    color: '#00d4ff',
+    github: 'https://github.com/therealdaud/cpp-dynamic-graph-dijkstra',
+    link: '/projects/dijkstra',
   },
 ];
 
@@ -233,6 +253,23 @@ export default function Projects() {
                     >
                       <FiExternalLink size={14} /> Live Demo
                     </a>
+                  )}
+                  {p.link && (
+                    <Link
+                      to={p.link}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 6,
+                        padding: '8px 16px', borderRadius: 8,
+                        background: `${p.color}18`,
+                        border: `1px solid ${p.color}44`,
+                        fontSize: 13, color: p.color,
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = `${p.color}30`; }}
+                      onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = `${p.color}18`; }}
+                    >
+                      <MdOutlineAccountTree size={14} /> Live Demo
+                    </Link>
                   )}
                 </div>
               </div>
