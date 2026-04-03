@@ -194,6 +194,9 @@ export default function DijkstraPage() {
 
   const currentStep = stepIdx >= 0 && steps.length ? steps[stepIdx] : null;
 
+  // ── Scroll to top on mount ────────────────────────────────────────────────
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   // ── Auto-play ──────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!playing) { if (playTimer.current) clearInterval(playTimer.current); return; }
