@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CommandPalette from './components/CommandPalette';
 import DijkstraPage from './pages/DijkstraPage';
+import QuietSpotPage from './pages/QuietSpotPage';
 
 function PortfolioHome() {
   return (
@@ -35,7 +36,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<PortfolioHome />} />
-      <Route path="/projects/dijkstra" element={<DijkstraPage />} />
+      <Route path="/projects/dijkstra"   element={<DijkstraPage />} />
+      <Route path="/projects/quietspot" element={<QuietSpotPage />} />
     </Routes>
   );
 }
