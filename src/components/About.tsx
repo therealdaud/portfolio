@@ -7,7 +7,7 @@ const stats = [
   { value: '3.80', label: 'GPA', icon: '🎓' },
   { value: '3+',   label: 'Projects Built', icon: '🚀' },
   { value: '500+', label: 'Lives Impacted', icon: '🌍' },
-  { value: '15+',  label: 'Bills Drafted', icon: '📜' },
+  { value: '10+',  label: 'Bills Drafted', icon: '📜' },
 ];
 
 const highlights = [

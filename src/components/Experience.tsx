@@ -23,7 +23,7 @@ const jobs: Job[] = [
     bullets: [
       'Engineered customer portal features by implementing React.js performance optimizations, lazy loading, Webpack bundling, and dynamic code-splitting which reduced page load times by 30% and directly improving the experience for 10k+ active users.',
       'Designed and built a data analytics monitoring service in Python, SQL, and Flask, integrating AI hooks that enabled 40% faster anomaly detection and significantly uplifted reliability engineering across production systems.',
-      'Owned end-to-end feature delivery within an Agile team, participating in sprint planning, code reviews, and stand-ups, while shipping production-ready code that scaled across ConnecTel\'s customer-facing infrastructure.',
+      'Collaborated within an Agile team, participating in sprint planning, daily stand-ups, and code reviews, while contributing production-ready code to ConnecTel\'s customer-facing infrastructure.',
     ],
   },
   {
@@ -34,7 +34,7 @@ const jobs: Job[] = [
     icon: <FiUsers size={16} />,
     color: '#7c3aed',
     bullets: [
-      'Drafted and co-sponsored 15+ legislative bills as a direct liaison between the student body and university administration, addressing issues ranging from campus safety to academic resources for a community of 50,000+ students.',
+      'Drafted 10+ legislative bills as elected Senator, serving as direct liaison between 50,000+ students and USF administration to advance policy reforms across academic affairs, student housing, and campus life.',
       'Served as Vice-Chair of Programming committee, facilitating structured debate, mediating cross-partisan discussions, and driving consensus on policy decisions that shaped campus life at one of the largest universities in the US.',
       'Championed initiatives that improved student access to mental health resources, financial aid transparency, and on-campus amenities, translating student concerns into measurable institutional change.',
     ],
@@ -48,7 +48,7 @@ const jobs: Job[] = [
     color: '#06d6a0',
     bullets: [
       'Led structured weekly Calculus I collaborative sessions for a cohort of 20 students, applying problem decomposition and algorithmic thinking to break down complex topics, resulting in a 15% average improvement in quiz scores over the semester.',
-      'Delivered 30+ hours of targeted one-on-one and group tutoring, using data-driven KPI tracking to identify struggling students early and deploy personalized intervention strategies before exam cycles.',
+      'Tutored 30+ hours of one-on-one and group Calculus I sessions, diagnosing misconceptions in limits, derivatives, and integration and applying step-by-step problem-solving strategies to address individual learning gaps.',
       'Designed practice sets, solution guides, and supplemental workflows that bridged the gap between high school and college-level mathematical reasoning, significantly easing the academic transition for first-year students.',
     ],
   },
