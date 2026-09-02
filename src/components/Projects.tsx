@@ -21,22 +21,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: 'HeatShield',
-    emoji: '🌡️',
-    tagline: 'Personalized Heat-Risk Alert System',
-    period: 'Aug 2025 – Present',
-    description: 'A production-grade serverless IoT system on AWS that ingests real-time temperature and humidity readings from IoT sensors, runs a personalized heat index algorithm, and fires SMS alerts via SNS before conditions turn dangerous.',
-    bullets: [
-      'Built a fully serverless pipeline with AWS Lambda (Python 3.13), AWS IoT Core, DynamoDB, SNS, and SAM IaC. IoT devices publish telemetry to an IoT topic rule that triggers Lambda for immediate processing with zero server management.',
-      'Engineered a personalized heat index algorithm beyond standard meteorological formulas, factoring in solar radiation, wind speed, clothing type, exertion level, heat acclimatization days, and cumulative thermal load via exponential smoothing to assign a 4-tier risk level (Green/Yellow/Orange/Red).',
-      'Reduced false negatives by 35% through adaptive sensor-driven alert thresholds with a 10-minute cooldown to prevent alert fatigue, and stored all readings in DynamoDB with auto-expiring TTL to keep storage lean.',
-      'Deployed via AWS SAM with CloudFormation, enabling fully reproducible infrastructure with Lambda Function URLs for HTTP access, making the entire system version-controlled and one-command deployable.',
-    ],
-    tech: ['AWS Lambda', 'AWS IoT Core', 'DynamoDB', 'SNS', 'Python 3.13', 'AWS SAM', 'CloudFormation'],
-    color: '#ff6b35',
-    github: 'https://github.com/therealdaud',
-  },
-  {
     name: 'QuietSpot',
     emoji: '🎙️',
     tagline: 'Crowdsourced Noise Mapping with ML Classification',

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FiBriefcase, FiBook, FiUsers, FiHeart } from 'react-icons/fi';
+import { FiBriefcase, FiBook, FiUsers, FiHeart, FiCpu } from 'react-icons/fi';
 
 type Job = {
   role: string;
@@ -14,16 +14,29 @@ type Job = {
 
 const jobs: Job[] = [
   {
-    role: 'Software Engineering Intern',
-    company: 'ConnecTel',
-    period: 'May 2025 – Aug 2025',
-    type: 'Industry',
-    icon: <FiBriefcase size={16} />,
+    role: 'Research Assistant',
+    company: 'PALM Lab, University of South Florida',
+    period: 'Apr 2026 – Present',
+    type: 'Research',
+    icon: <FiCpu size={16} />,
     color: '#00d4ff',
     bullets: [
-      'Engineered customer portal features by implementing React.js performance optimizations, lazy loading, Webpack bundling, and dynamic code-splitting which reduced page load times by 30% and directly improving the experience for 10k+ active users.',
-      'Designed and built a data analytics monitoring service in Python, SQL, and Flask, integrating AI hooks that enabled 40% faster anomaly detection and significantly uplifted reliability engineering across production systems.',
-      'Collaborated within an Agile team, participating in sprint planning, daily stand-ups, and code reviews, while contributing production-ready code to ConnecTel\'s customer-facing infrastructure.',
+      'Co-developing multilingual **WebArena and VisualWebArena benchmarks** for LLM and vision-language web agents across Bengali, Urdu, and English, with a five-condition factorial across four models designed to study linguistic, visual, structural, and cultural failure modes under controlled language and interface variations.',
+      'Built deterministic evaluation environments using **Python, Playwright, Docker**, seeded backends, reset logic, and database/URL validators, then automated task-success scoring from final environment state across search, forms, account workflows, and multi-step transactions for reproducible cross-model and cross-language evaluation.',
+    ],
+  },
+  {
+    role: 'AI Engineering Intern',
+    company: 'NETSOL Technologies Inc.',
+    period: 'Jun 2026 – Aug 2026',
+    type: 'Industry',
+    icon: <FiBriefcase size={16} />,
+    color: '#f472b6',
+    bullets: [
+      '**Employee Attrition Modeling** — Developed a 12-month employee attrition pipeline using XGBoost and CatBoost, with Optuna tuning, employee-grouped cross-validation, probability calibration, and held-out evaluation. The final pipeline reached **0.70 PR-AUC, roughly 5× the random baseline**.',
+      'Benchmarked **18+ model families** and found that results repeatedly converged near the same performance ceiling. The analysis suggested further gains depended more on richer organizational signals than on changing algorithms — particularly around compensation, manager and team dynamics, tenure, and employee history.',
+      '**Internal GenAI Knowledge Assistant** — Co-built an internal enterprise knowledge assistant using LangGraph, FastAPI, RAG, Text-to-SQL, and FastMCP. The system routed questions between semantic retrieval over **1,500+ document chunks**, structured queries against a **25+ table database schema**, and uploaded-document search before generating grounded answers.',
+      'Worked on the retrieval and reliability layer, including source-aware ingestion, conversation memory, read-only SQL generation, and fallback between retrieval paths. After finding that boilerplate-heavy pages could dominate retrieved context, we added **per-URL diversity caps and relevance thresholds** to improve source coverage and reduce single-source bias.',
     ],
   },
   {

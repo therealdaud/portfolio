@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { FiAward, FiBookOpen, FiUsers, FiCloud } from 'react-icons/fi';
 
 const stats = [
-  { value: '3.80', label: 'GPA', icon: '🎓' },
+  { value: '3.84', label: 'GPA', icon: '🎓' },
   { value: '3+',   label: 'Projects Built', icon: '🚀' },
   { value: '500+', label: 'Lives Impacted', icon: '🌍' },
   { value: '10+',  label: 'Bills Drafted', icon: '📜' },
@@ -12,7 +12,7 @@ const stats = [
 
 const highlights = [
   { icon: <FiAward size={18} />,    text: "Green & Gold Presidential Scholarship" },
-  { icon: <FiBookOpen size={18} />, text: "Dean's Honor List — Fall 2023, Spring 2024, Spring 2025" },
+  { icon: <FiBookOpen size={18} />, text: "Dean's Honor List — Fall 2023, Spring 2024, Spring 2025, Spring 2026" },
   { icon: <FiUsers size={18} />,    text: "Senator & Vice-Chair, USF Student Government" },
   { icon: <FiCloud size={18} />, text: "AWS Certified Cloud Practitioner" },
 ];
@@ -42,15 +42,17 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p style={{ fontSize: 16, color: 'var(--text)', lineHeight: 1.85, marginBottom: 22 }}>
-              Hey! I'm <strong style={{ color: 'var(--heading)' }}>Daud Ahmad Nisar</strong>, a junior majoring in Computer Science at the
+              Hey! I'm <strong style={{ color: 'var(--heading)' }}>Daud Ahmad Nisar</strong>, a senior majoring in Computer Science at the
               University of South Florida. I'm an aspiring{' '}
               <span style={{ color: 'var(--accent)' }}>Machine Learning Engineer</span> who loves engineering products
               that make a real difference in people's everyday lives.
             </p>
             <p style={{ fontSize: 16, color: 'var(--text)', lineHeight: 1.85, marginBottom: 22 }}>
-              I've had the chance to work as a <strong style={{ color: 'var(--heading)' }}>Software Engineering Intern</strong>{' '}
-              at ConnecTel, where I shipped React optimizations that cut load times by 30% for 10k+ users, and built
-              AI-powered analytics tools. I also bring a strong cloud foundation as an{' '}
+              Most recently I was an <strong style={{ color: 'var(--heading)' }}>AI Engineering Intern</strong>{' '}
+              at NETSOL Technologies, where I built an employee attrition pipeline that reached 0.70 PR-AUC and
+              co-built an internal GenAI knowledge assistant over 1,500+ document chunks. I'm now a{' '}
+              <strong style={{ color: 'var(--heading)' }}>Research Assistant at PALM Lab</strong>, building multilingual
+              benchmarks for LLM web agents. I also bring a strong cloud foundation as an{' '}
               <span style={{ color: 'var(--accent)' }}>AWS Certified Cloud Practitioner</span>.
             </p>
             <p style={{ fontSize: 16, color: 'var(--text)', lineHeight: 1.85, marginBottom: 36 }}>
