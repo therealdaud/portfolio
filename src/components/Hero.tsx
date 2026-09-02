@@ -283,7 +283,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65 }}
               style={{ fontSize: 17, color: 'var(--muted)', maxWidth: 520, lineHeight: 1.75, marginBottom: 36 }}
             >
-              Junior majoring in <span style={{ color: 'var(--text)' }}>Computer Science at the University of South Florida</span> with a passion for
+              Senior majoring in <span style={{ color: 'var(--text)' }}>Computer Science at the University of South Florida</span> with a passion for
               building impactful products at the intersection of{' '}
               <span style={{ color: 'var(--text)' }}>AI, cloud, and full-stack engineering</span>.
               AWS Certified Cloud Practitioner.
@@ -297,7 +297,7 @@ export default function Hero() {
               {[
                 { label: 'AWS Certified',      icon: <FiCloud size={14} />, color: '#ff9900'       },
                 { label: "Dean's Honor List",  icon: '🏆',                  color: 'var(--accent3)' },
-                { label: 'GPA 3.80 / 4.0',    icon: '🎓',                  color: 'var(--accent)'  },
+                { label: 'GPA 3.84 / 4.0',    icon: '🎓',                  color: 'var(--accent)'  },
               ].map((b, i) => (
                 <span key={i} style={{
                   display: 'inline-flex', alignItems: 'center', gap: 6,

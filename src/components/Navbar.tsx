@@ -23,30 +23,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Announcement Bar ── */}
-      <div className="announce-bar" style={{
-        position: 'fixed', top: 0, width: '100%', zIndex: 101,
-        background: 'linear-gradient(90deg, rgba(6,214,160,0.08), rgba(0,212,255,0.06), rgba(124,58,237,0.08))',
-        borderBottom: '1px solid rgba(6,214,160,0.12)',
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
-        height: 32,
-      }}>
-        <span style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-          fontSize: 11, color: 'var(--accent3)',
-          fontFamily: 'var(--mono)', letterSpacing: 0.5,
-        }}>
-          <span style={{
-            width: 6, height: 6, borderRadius: '50%',
-            background: 'var(--accent3)',
-            boxShadow: '0 0 8px var(--accent3)',
-            animation: 'pulse-dot 2s ease-in-out infinite',
-          }} />
-          Currently building: <strong style={{ color: 'var(--heading)' }}>HeatShield</strong>
-          <span style={{ color: 'var(--muted)' }}>— Personalized Heat-Risk Alert System on AWS</span>
-        </span>
-      </div>
-
       {/* ── Main Navbar ── */}
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
@@ -54,7 +30,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{
           position: 'fixed',
-          top: 32,
+          top: 0,
           width: '100%',
           zIndex: 100,
           transition: 'all 0.3s ease',
@@ -176,15 +152,9 @@ export default function Navbar() {
       </motion.nav>
 
       <style>{`
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger { display: flex !important; }
-          .announce-bar { display: none !important; }
-          nav { top: 0 !important; }
         }
       `}</style>
     </>
